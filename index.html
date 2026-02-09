@@ -34,7 +34,6 @@ body{
   100%{transform:translateY(-110vh);opacity:0;}
 }
 
-/* COMMON */
 .page{
   display:flex;
   justify-content:center;
@@ -64,7 +63,6 @@ h1{
   margin-bottom:30px;
 }
 
-/* BUTTONS */
 .btns{
   position:relative;
   height:120px;
@@ -129,7 +127,6 @@ input{
   white-space:pre-wrap;
 }
 
-/* Cursor */
 .cursor{
   display:inline-block;
   width:3px;
@@ -143,7 +140,6 @@ input{
   50%{opacity:0;}
 }
 
-/* TIMER */
 .timer{
   margin-bottom:25px;
   font-size:1.1rem;
@@ -153,6 +149,11 @@ input{
 </head>
 
 <body>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2f6c0f6a9b.mp3" type="audio/mpeg">
+</audio>
 
 <!-- HEARTS -->
 <div class="hearts">
@@ -184,8 +185,8 @@ input{
 <div class="page" id="passwordPage">
   <div class="card">
     <h1>Only for you 💗</h1>
-    <p>The Date I turned you on and I felt your soft busu busu</p>
-    <input type="password" id="password" placeholder="Hint: you already know 😉">
+    <p>The Date I turned you on and felt your soft Busu Busu</p>
+    <input type="password" id="password">
     <br><br>
     <button onclick="checkPassword()">Unlock 💌</button>
   </div>
@@ -201,6 +202,8 @@ input{
 </div>
 
 <script>
+const bgMusic=document.getElementById("bgMusic");
+
 /* RUNAWAY NO */
 const noBtn=document.getElementById("no");
 noBtn.addEventListener("mouseenter",()=>{
@@ -208,74 +211,49 @@ noBtn.addEventListener("mouseenter",()=>{
   noBtn.style.top=Math.random()*70+"%";
 });
 
-/* YES */
-document.getElementById("yes").onclick=()=>{
+/* YES CLICK */
+yes.onclick=()=>{
+  bgMusic.volume=0;
+  bgMusic.play();
+  let v=0;
+  const fade=setInterval(()=>{
+    if(v<0.5){ v+=0.02; bgMusic.volume=v; }
+    else clearInterval(fade);
+  },200);
+
   page1.style.display="none";
   passwordPage.style.display="flex";
 };
 
 /* PASSWORD */
 const SECRET="26012026";
-
 function checkPassword(){
-  if(password.value.toLowerCase()===SECRET){
+  if(password.value===SECRET){
     passwordPage.style.display="none";
     letterPage.style.display="block";
     startTyping();
-  } else {
-    alert("Try again 💕");
-  }
+  } else alert("Try again 💕");
 }
 
-/* TYPING EFFECT */
-const letterText = `This is my first ever letter to you. And it’s a very special one, because this is the first time I’m doing something like this for someone.
-I honestly don’t even know how I’m managing to do all this, or if I’m doing it the “right” way—but I really wanted to do it for you. That’s the only thing I’m sure about.
-
-I don’t know if you’re able to fully accept or believe everything that’s happening right now, or if you’re even in the same space as me. Sometimes I might come across as overwhelming—maybe I talk too much, express too much, or move a little too fast. It might feel like I’m rushing things or unintentionally making you uncomfortable at times. I genuinely don’t know.
-But what I do know is this: nothing I’m doing is fake or artificial. Everything comes from a real place, and it’s only for Suba—my one and only Busu Busu.
-
-I’m usually a very private person, especially with my family. They know things, but not the details—not what I truly feel inside. With you, I want to change that. I want to share anything and everything with you. I want you to be my safe place for life, and I promise I’ll be the same for you. 🤍
-
-I know we’ve only known each other for a short while, and how everything between us began was random and completely unexpected. But the moment I saw you, something deep inside me felt certain—that you were going to be someone truly special.
-
-I don’t know if it was love at first sight, but I’m pretty sure it felt like coming home—a sense of calm, comfort, and peace that I didn’t even realize I was looking for.
-
-Sometimes I might get clingy—brace yourself (haha). I’m expressive and energetic, running around here and there, but at times I’m also a very boring person who just wants to sit at home and do nothing. That doesn’t mean I’ve lost interest or stopped loving you—it’s just me.
-You always say, “Starting-le ipdi than irukum, apram fade ayidum.” I don’t want you to overthink or confuse this phase whenever I’m just being “boring” 😄
-
-There’s so much in my mind right now. I want to play with you, dance with you, sing with you, fight and argue with you, watch movies, roam the world, visit places, sit idle, listen to music, grow old, learn new things, hug you, kiss you, build a home, cook together, eat together—and the list just goes on.
-I want to tick off everything on that bucket list, slowly and steadily, without rushing. You know how I am—this is where I’ll need your help too, to slow me down when I rush ahead.
-
-I’m genuinely excited for everything that lies ahead—our endless conversations, silly quarrels, romance, arguments, missing each other, and all the little moments in between.
-
-I don’t want this letter to be too long, and I don’t want to spill everything all at once.
-This letter is for my Busu Busu and * **** *** Busu Busu. I hope you know why I chose stars instead of words.
-
-Cheers to our first Valentine’s Day—and many more to come. ♾️💕`;
-
+/* TYPING EFFECT (SLOWED) */
+const letterText = `YOUR LETTER TEXT HERE`; // keep same text
 let i=0;
+
 function startTyping(){
   const el=document.getElementById("text");
   const cursor='<span class="cursor"></span>';
   if(i<letterText.length){
-    el.innerHTML = letterText.slice(0,i+1) + cursor;
+    el.innerHTML=letterText.slice(0,i+1)+cursor;
     i++;
-    setTimeout(startTyping,40);
-  } else {
-    el.innerHTML = letterText;
-  }
+    setTimeout(startTyping,80); // ⬅ slower & romantic
+  } else el.innerHTML=letterText;
 }
 
 /* TIMER */
 const metDate=new Date("2025-11-13T11:00:00");
-
 function updateTimer(){
-  const now=new Date();
-  const diff=now-metDate;
-  const d=Math.floor(diff/(1000*60*60*24));
-  const h=Math.floor(diff/(1000*60*60)%24);
-  const m=Math.floor(diff/(1000*60)%60);
-  timer.innerText=`Time since we met: ${d} days, ${h} hours, ${m} minutes ♾️`;
+  const diff=new Date()-metDate;
+  timer.innerText=`Time since we met: ${Math.floor(diff/86400000)} days ♾️`;
 }
 setInterval(updateTimer,1000);
 updateTimer();
