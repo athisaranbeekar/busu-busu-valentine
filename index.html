@@ -6,33 +6,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Homemade+Apple&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 body{
   margin:0;
   min-height:100vh;
   background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-  font-family:'Playfair Display',serif;
-  color:#5a0f2e;
+  font-family:'Caveat',cursive;
+  color:#4a0e2e;
   overflow:hidden;
 }
 
-/* ---------- PAGE 1 ---------- */
+/* FLOATING HEARTS */
+.hearts span{
+  position:fixed;
+  bottom:-50px;
+  font-size:22px;
+  animation:float 12s linear infinite;
+  opacity:0.7;
+  z-index:0;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);opacity:0;}
+  10%{opacity:0.8;}
+  100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* COMMON */
 .page{
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
   text-align:center;
+  position:relative;
+  z-index:1;
 }
 
 .card{
-  background:rgba(255,255,255,0.3);
-  backdrop-filter:blur(12px);
+  background:rgba(255,255,255,0.35);
+  backdrop-filter:blur(14px);
   padding:40px;
   border-radius:25px;
-  box-shadow:0 15px 40px rgba(255,0,120,0.4);
+  box-shadow:0 15px 40px rgba(255,0,120,0.35);
 }
 
 h1{
@@ -46,26 +64,27 @@ h1{
   margin-bottom:30px;
 }
 
+/* BUTTONS */
 .btns{
   position:relative;
-  height:100px;
+  height:120px;
 }
 
 button{
-  padding:12px 30px;
+  padding:12px 32px;
   border:none;
   border-radius:30px;
   background:#ff4d6d;
   color:white;
-  font-size:1rem;
+  font-size:1.1rem;
   cursor:pointer;
   position:absolute;
 }
 
-#yes{left:35%;}
+#yes{left:30%;}
 #no{left:55%;}
 
-/* ---------- PASSWORD PAGE ---------- */
+/* PASSWORD PAGE */
 #passwordPage{
   display:none;
   flex-direction:column;
@@ -73,45 +92,60 @@ button{
 
 input{
   padding:12px;
-  border-radius:10px;
+  border-radius:12px;
   border:none;
-  font-size:1rem;
-  margin-top:20px;
+  font-size:1.1rem;
+  text-align:center;
 }
 
-/* ---------- LETTER PAGE ---------- */
+/* LETTER PAGE */
 #letterPage{
   display:none;
   height:100vh;
   overflow-y:auto;
-  padding:40px 20px;
+  padding:60px 20px;
 }
 
 .letter{
-  max-width:700px;
+  max-width:720px;
   margin:auto;
-  background:rgba(255,255,255,0.35);
-  backdrop-filter:blur(14px);
+  background:rgba(255,255,255,0.4);
+  backdrop-filter:blur(16px);
   padding:50px;
   border-radius:25px;
-  box-shadow:0 15px 40px rgba(255,0,120,0.4);
+  box-shadow:0 15px 40px rgba(255,0,120,0.35);
 }
 
 .letter h2{
   font-family:'Pacifico',cursive;
-  font-size:2.5rem;
-  margin-bottom:20px;
+  font-size:2.6rem;
+  margin-bottom:25px;
 }
 
 .handwritten{
-  font-family:'Homemade Apple',cursive;
-  font-size:1.1rem;
+  font-size:1.6rem;
   line-height:2.2;
+  letter-spacing:0.3px;
+  white-space:pre-wrap;
 }
 
-/* ---------- TIMER ---------- */
+/* Cursor */
+.cursor{
+  display:inline-block;
+  width:3px;
+  height:1.6rem;
+  background:#4a0e2e;
+  margin-left:4px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+/* TIMER */
 .timer{
-  margin:30px 0;
+  margin-bottom:25px;
   font-size:1.1rem;
   font-style:italic;
 }
@@ -119,6 +153,20 @@ input{
 </head>
 
 <body>
+
+<!-- HEARTS -->
+<div class="hearts">
+  <span style="left:5%">💖</span>
+  <span style="left:15%">💗</span>
+  <span style="left:25%">💓</span>
+  <span style="left:35%">💞</span>
+  <span style="left:45%">💝</span>
+  <span style="left:55%">❤️</span>
+  <span style="left:65%">💘</span>
+  <span style="left:75%">💖</span>
+  <span style="left:85%">💗</span>
+  <span style="left:95%">💓</span>
+</div>
 
 <!-- PAGE 1 -->
 <div class="page" id="page1">
@@ -132,26 +180,55 @@ input{
   </div>
 </div>
 
-<!-- PASSWORD PAGE -->
+<!-- PASSWORD -->
 <div class="page" id="passwordPage">
   <div class="card">
     <h1>Only for you 💗</h1>
-    <p>Enter the password. Clue - Exact date when I turned you on and I actually felt your busu busu.</p>
-    <input type="password" id="password" placeholder="Hint: ddmmyyyy 😉">
+    <p>The Date I turned you on and I felt your soft busu busu</p>
+    <input type="password" id="password" placeholder="Hint: you already know 😉">
     <br><br>
     <button onclick="checkPassword()">Unlock 💌</button>
   </div>
 </div>
 
-<!-- LETTER PAGE -->
+<!-- LETTER -->
 <div id="letterPage">
   <div class="letter">
     <h2>Busu Busu 💖</h2>
-
     <div class="timer" id="timer"></div>
+    <div class="handwritten" id="text"></div>
+  </div>
+</div>
 
-    <p class="handwritten">
-This is my first ever letter to you. And it’s a very special one, because this is the first time I’m doing something like this for someone.
+<script>
+/* RUNAWAY NO */
+const noBtn=document.getElementById("no");
+noBtn.addEventListener("mouseenter",()=>{
+  noBtn.style.left=Math.random()*70+"%";
+  noBtn.style.top=Math.random()*70+"%";
+});
+
+/* YES */
+document.getElementById("yes").onclick=()=>{
+  page1.style.display="none";
+  passwordPage.style.display="flex";
+};
+
+/* PASSWORD */
+const SECRET="26012026";
+
+function checkPassword(){
+  if(password.value.toLowerCase()===SECRET){
+    passwordPage.style.display="none";
+    letterPage.style.display="block";
+    startTyping();
+  } else {
+    alert("Try again 💕");
+  }
+}
+
+/* TYPING EFFECT */
+const letterText = `This is my first ever letter to you. And it’s a very special one, because this is the first time I’m doing something like this for someone.
 I honestly don’t even know how I’m managing to do all this, or if I’m doing it the “right” way—but I really wanted to do it for you. That’s the only thing I’m sure about.
 
 I don’t know if you’re able to fully accept or believe everything that’s happening right now, or if you’re even in the same space as me. Sometimes I might come across as overwhelming—maybe I talk too much, express too much, or move a little too fast. It might feel like I’m rushing things or unintentionally making you uncomfortable at times. I genuinely don’t know.
@@ -172,51 +249,33 @@ I want to tick off everything on that bucket list, slowly and steadily, without 
 I’m genuinely excited for everything that lies ahead—our endless conversations, silly quarrels, romance, arguments, missing each other, and all the little moments in between.
 
 I don’t want this letter to be too long, and I don’t want to spill everything all at once.
-This letter is for my Busu Busu and **** *** Busu Busu. I hope you know why I chose stars instead of words.
+This letter is for my Busu Busu and * **** *** Busu Busu. I hope you know why I chose stars instead of words.
 
-Cheers to our first Valentine’s Day—and many more to come. ♾️💕
-    </p>
-  </div>
-</div>
+Cheers to our first Valentine’s Day—and many more to come. ♾️💕`;
 
-<script>
-/* NO button runaway */
-const noBtn=document.getElementById("no");
-noBtn.addEventListener("mouseenter",()=>{
-  noBtn.style.left=Math.random()*70+"%";
-  noBtn.style.top=Math.random()*70+"%";
-});
-
-/* YES click */
-document.getElementById("yes").onclick=()=>{
-  document.getElementById("page1").style.display="none";
-  document.getElementById("passwordPage").style.display="flex";
-};
-
-/* PASSWORD */
-const SECRET="26012026"; // 🔐 CHANGE PASSWORD HERE
-
-function checkPassword(){
-  const val=document.getElementById("password").value;
-  if(val.toLowerCase()===SECRET){
-    document.getElementById("passwordPage").style.display="none";
-    document.getElementById("letterPage").style.display="block";
-  }else{
-    alert("Hmm… try again 💕");
+let i=0;
+function startTyping(){
+  const el=document.getElementById("text");
+  const cursor='<span class="cursor"></span>';
+  if(i<letterText.length){
+    el.innerHTML = letterText.slice(0,i+1) + cursor;
+    i++;
+    setTimeout(startTyping,40);
+  } else {
+    el.innerHTML = letterText;
   }
 }
 
 /* TIMER */
-const metDate=new Date("2025-11-13T11:00:00"); // 📅 CHANGE DATE HERE
+const metDate=new Date("2025-11-13T11:00:00");
 
 function updateTimer(){
   const now=new Date();
   const diff=now-metDate;
-  const days=Math.floor(diff/(1000*60*60*24));
-  const hours=Math.floor((diff/(1000*60*60))%24);
-  const mins=Math.floor((diff/(1000*60))%60);
-  document.getElementById("timer").innerText=
-    `Time since we met: ${days} days, ${hours} hours, ${mins} minutes ♾️`;
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor(diff/(1000*60*60)%24);
+  const m=Math.floor(diff/(1000*60)%60);
+  timer.innerText=`Time since we met: ${d} days, ${h} hours, ${m} minutes ♾️`;
 }
 setInterval(updateTimer,1000);
 updateTimer();
