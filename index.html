@@ -1,226 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Hey Busu Busu 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>For Busu Busu 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Homemade+Apple&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-      color: #fff;
-      text-align: center;
-    }
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  font-family:'Playfair Display',serif;
+  color:#5a0f2e;
+  overflow:hidden;
+}
 
-    /* Floating hearts */
-    .hearts span {
-      position: fixed;
-      bottom: -50px;
-      font-size: 26px;
-      animation: floatUp 10s linear infinite;
-      opacity: 0.9;
-    }
+/* ---------- PAGE 1 ---------- */
+.page{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  text-align:center;
+}
 
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 0; }
-      10% { opacity: 1; }
-      100% { transform: translateY(-110vh) scale(1.6); opacity: 0; }
-    }
+.card{
+  background:rgba(255,255,255,0.3);
+  backdrop-filter:blur(12px);
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(255,0,120,0.4);
+}
 
-    .container {
-      position: relative;
-      z-index: 2;
-      padding: 80px 20px;
-    }
+h1{
+  font-family:'Pacifico',cursive;
+  font-size:3rem;
+  margin-bottom:20px;
+}
 
-    h1 {
-      font-family: 'Pacifico', cursive;
-      font-size: 3.2rem;
-      margin-bottom: 20px;
-    }
+.question{
+  font-size:1.6rem;
+  margin-bottom:30px;
+}
 
-    .card {
-      background: rgba(255,255,255,0.25);
-      backdrop-filter: blur(12px);
-      border-radius: 25px;
-      padding: 35px;
-      max-width: 520px;
-      margin: auto;
-      box-shadow: 0 12px 35px rgba(255,0,120,0.4);
-    }
+.btns{
+  position:relative;
+  height:100px;
+}
 
-    .question {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.9rem;
-      margin-bottom: 30px;
-    }
+button{
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  font-size:1rem;
+  cursor:pointer;
+  position:absolute;
+}
 
-    .btns {
-      position: relative;
-      height: 120px;
-    }
+#yes{left:35%;}
+#no{left:55%;}
 
-    .love-btn {
-      padding: 12px 30px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 30px;
-      background: #ff4d6d;
-      color: #fff;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255,0,100,0.4);
-      position: absolute;
-      transition: transform 0.2s;
-    }
+/* ---------- PASSWORD PAGE ---------- */
+#passwordPage{
+  display:none;
+  flex-direction:column;
+}
 
-    #yesBtn {
-      left: 50%;
-      transform: translateX(-120%);
-    }
+input{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:1rem;
+  margin-top:20px;
+}
 
-    #noBtn {
-      left: 50%;
-      transform: translateX(20%);
-    }
+/* ---------- LETTER PAGE ---------- */
+#letterPage{
+  display:none;
+  height:100vh;
+  overflow-y:auto;
+  padding:40px 20px;
+}
 
-    /* Explosion particles */
-    .particle {
-      position: fixed;
-      font-size: 22px;
-      pointer-events: none;
-      animation: explode 1.5s ease-out forwards;
-    }
+.letter{
+  max-width:700px;
+  margin:auto;
+  background:rgba(255,255,255,0.35);
+  backdrop-filter:blur(14px);
+  padding:50px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(255,0,120,0.4);
+}
 
-    @keyframes explode {
-      to {
-        transform: translate(var(--x), var(--y)) scale(1.5);
-        opacity: 0;
-      }
-    }
+.letter h2{
+  font-family:'Pacifico',cursive;
+  font-size:2.5rem;
+  margin-bottom:20px;
+}
 
-    /* Message overlay */
-    .message-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(255,154,158,0.95);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      padding: 20px;
-    }
+.handwritten{
+  font-family:'Homemade Apple',cursive;
+  font-size:1.1rem;
+  line-height:2.2;
+}
 
-    .message-card {
-      background: rgba(255,255,255,0.35);
-      backdrop-filter: blur(14px);
-      border-radius: 25px;
-      padding: 40px;
-      max-width: 650px;
-      box-shadow: 0 15px 40px rgba(255,0,120,0.4);
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .message-card h2 {
-      font-family: 'Pacifico', cursive;
-      font-size: 2.4rem;
-      margin-bottom: 20px;
-      color: #5a0f2e;
-    }
-
-    .message-card p {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      line-height: 1.9;
-      color: #7a1f3d;
-      text-align: left;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    /* Cursor */
-    .cursor {
-      display: inline-block;
-      margin-left: 4px;
-      animation: blink 1s infinite;
-      color: #7a1f3d;
-    }
-
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
-    }
-  </style>
+/* ---------- TIMER ---------- */
+.timer{
+  margin:30px 0;
+  font-size:1.1rem;
+  font-style:italic;
+}
+</style>
 </head>
+
 <body>
 
-  <!-- Floating hearts -->
-  <div class="hearts">
-    <span style="left:5%">💖</span>
-    <span style="left:15%">💘</span>
-    <span style="left:25%">💗</span>
-    <span style="left:35%">💓</span>
-    <span style="left:45%">💞</span>
-    <span style="left:55%">💝</span>
-    <span style="left:65%">❤️</span>
-    <span style="left:75%">💖</span>
-    <span style="left:85%">💘</span>
-    <span style="left:95%">💗</span>
-  </div>
-
-  <div class="container">
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+  <div class="card">
     <h1>Hey Busu Busu 💕</h1>
-
-    <div class="card">
-      <div class="question">
-        Will you be my Valentine forever ♾️? 💘
-      </div>
-
-      <div class="btns">
-        <button id="yesBtn" class="love-btn">YES 💕</button>
-        <button id="noBtn" class="love-btn">NO 🙈</button>
-      </div>
+    <div class="question">Will you be my Valentine forever ♾️?</div>
+    <div class="btns">
+      <button id="yes">YES 💖</button>
+      <button id="no">NO 🙈</button>
     </div>
   </div>
+</div>
 
-  <!-- Final Message -->
-  <div class="message-overlay" id="message">
-    <div class="message-card">
-      <h2>Busu Busu 💖</h2>
-      <p id="typedMessage"></p><span id="cursor" class="cursor">|</span>
-      <h3 id="finalLine" style="display:none; margin-top:30px; font-family:'Pacifico', cursive; font-size:2rem; color:#5a0f2e;">
-        Forever starts here ♾️
-      </h3>
-    </div>
+<!-- PASSWORD PAGE -->
+<div class="page" id="passwordPage">
+  <div class="card">
+    <h1>Only for you 💗</h1>
+    <p>Enter the password. Clue - Exact date when I turned you on and I actually felt your busu busu.</p>
+    <input type="password" id="password" placeholder="Hint: ddmmyyyy 😉">
+    <br><br>
+    <button onclick="checkPassword()">Unlock 💌</button>
   </div>
+</div>
 
-  <!-- Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2f6c0f6a9b.mp3" type="audio/mpeg">
-  </audio>
+<!-- LETTER PAGE -->
+<div id="letterPage">
+  <div class="letter">
+    <h2>Busu Busu 💖</h2>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const card = document.querySelector(".card");
-    const message = document.getElementById("message");
-    const typedMessage = document.getElementById("typedMessage");
-    const finalLine = document.getElementById("finalLine");
-    const cursor = document.getElementById("cursor");
-    const bgMusic = document.getElementById("bgMusic");
+    <div class="timer" id="timer"></div>
 
-    let yesScale = 1;
-
-    const fullMessage = `This is my first ever letter to you. And it’s a very special one, because this is the first time I’m doing something like this for someone.
+    <p class="handwritten">
+This is my first ever letter to you. And it’s a very special one, because this is the first time I’m doing something like this for someone.
 I honestly don’t even know how I’m managing to do all this, or if I’m doing it the “right” way—but I really wanted to do it for you. That’s the only thing I’m sure about.
 
 I don’t know if you’re able to fully accept or believe everything that’s happening right now, or if you’re even in the same space as me. Sometimes I might come across as overwhelming—maybe I talk too much, express too much, or move a little too fast. It might feel like I’m rushing things or unintentionally making you uncomfortable at times. I genuinely don’t know.
@@ -243,78 +174,53 @@ I’m genuinely excited for everything that lies ahead—our endless conversatio
 I don’t want this letter to be too long, and I don’t want to spill everything all at once.
 This letter is for my Busu Busu and **** *** Busu Busu. I hope you know why I chose stars instead of words.
 
-Cheers to our first Valentine’s Day—and many more to come. ♾️💕`;
+Cheers to our first Valentine’s Day—and many more to come. ♾️💕
+    </p>
+  </div>
+</div>
 
-    function moveNoBtn() {
-      const cardRect = card.getBoundingClientRect();
-      const btnRect = noBtn.getBoundingClientRect();
+<script>
+/* NO button runaway */
+const noBtn=document.getElementById("no");
+noBtn.addEventListener("mouseenter",()=>{
+  noBtn.style.left=Math.random()*70+"%";
+  noBtn.style.top=Math.random()*70+"%";
+});
 
-      noBtn.style.left = Math.random() * (cardRect.width - btnRect.width) + "px";
-      noBtn.style.top = Math.random() * (cardRect.height - btnRect.height) + "px";
+/* YES click */
+document.getElementById("yes").onclick=()=>{
+  document.getElementById("page1").style.display="none";
+  document.getElementById("passwordPage").style.display="flex";
+};
 
-      yesScale += 0.15;
-      yesBtn.style.transform = `translateX(-120%) scale(${yesScale})`;
-    }
+/* PASSWORD */
+const SECRET="26012026"; // 🔐 CHANGE PASSWORD HERE
 
-    ["mouseenter", "touchstart", "click"].forEach(event => {
-      noBtn.addEventListener(event, e => {
-        e.preventDefault();
-        moveNoBtn();
-      });
-    });
+function checkPassword(){
+  const val=document.getElementById("password").value;
+  if(val.toLowerCase()===SECRET){
+    document.getElementById("passwordPage").style.display="none";
+    document.getElementById("letterPage").style.display="block";
+  }else{
+    alert("Hmm… try again 💕");
+  }
+}
 
-    yesBtn.addEventListener("click", e => {
-      bgMusic.volume = 0;
-      bgMusic.play();
+/* TIMER */
+const metDate=new Date("2025-11-13T11:00:00"); // 📅 CHANGE DATE HERE
 
-      let vol = 0;
-      const fade = setInterval(() => {
-        if (vol < 0.5) {
-          vol += 0.02;
-          bgMusic.volume = vol;
-        } else {
-          clearInterval(fade);
-        }
-      }, 200);
-
-      const emojis = ["💖","💘","💗","💓","💞","✨","🎉"];
-      for (let i = 0; i < 40; i++) {
-        const p = document.createElement("span");
-        p.className = "particle";
-        p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        p.style.left = e.clientX + "px";
-        p.style.top = e.clientY + "px";
-        p.style.setProperty("--x", `${(Math.random()-0.5)*400}px`);
-        p.style.setProperty("--y", `${(Math.random()-0.5)*400}px`);
-        document.body.appendChild(p);
-        setTimeout(() => p.remove(), 1500);
-      }
-
-      setTimeout(() => {
-        message.style.display = "flex";
-        typeWriter(fullMessage);
-      }, 600);
-    });
-
-    function typeWriter(text) {
-      let i = 0;
-      typedMessage.innerHTML = "";
-      cursor.style.display = "inline-block";
-
-      const interval = setInterval(() => {
-        typedMessage.innerHTML += text[i] === "\n" ? "<br>" : text[i];
-        i++;
-
-        if (i >= text.length) {
-          clearInterval(interval);
-          cursor.style.display = "none";
-          setTimeout(() => finalLine.style.display = "block", 800);
-        }
-      }, 30);
-    }
-  </script>
+function updateTimer(){
+  const now=new Date();
+  const diff=now-metDate;
+  const days=Math.floor(diff/(1000*60*60*24));
+  const hours=Math.floor((diff/(1000*60*60))%24);
+  const mins=Math.floor((diff/(1000*60))%60);
+  document.getElementById("timer").innerText=
+    `Time since we met: ${days} days, ${hours} hours, ${mins} minutes ♾️`;
+}
+setInterval(updateTimer,1000);
+updateTimer();
+</script>
 
 </body>
 </html>
-
-
