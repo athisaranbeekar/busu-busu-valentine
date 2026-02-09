@@ -54,7 +54,6 @@
       max-width: 520px;
       margin: auto;
       box-shadow: 0 12px 35px rgba(255,0,120,0.4);
-      position: relative;
     }
 
     .question {
@@ -83,7 +82,7 @@
 
     #yesBtn {
       left: 50%;
-      transform: translateX(-120%) scale(1);
+      transform: translateX(-120%);
     }
 
     #noBtn {
@@ -139,8 +138,6 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.15rem;
       line-height: 1.9;
-      letter-spacing: 0.3px;
-      word-spacing: 2px;
       color: #7a1f3d;
       text-align: left;
     }
@@ -150,12 +147,12 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* Cursor blink */
+    /* Cursor */
     .cursor {
       display: inline-block;
-      width: 8px;
       margin-left: 4px;
       animation: blink 1s infinite;
+      color: #7a1f3d;
     }
 
     @keyframes blink {
@@ -199,7 +196,7 @@
   <div class="message-overlay" id="message">
     <div class="message-card">
       <h2>Busu Busu 💖</h2>
-      <p id="typedMessage"><span id="cursor" class="cursor">|</span></p>
+      <p id="typedMessage"></p><span id="cursor" class="cursor">|</span>
       <h3 id="finalLine" style="display:none; margin-top:30px; font-family:'Pacifico', cursive; font-size:2rem; color:#5a0f2e;">
         Forever starts here ♾️
       </h3>
@@ -223,15 +220,13 @@
 
     let yesScale = 1;
 
-    const fullMessage = `
-I know we’ve only known each other for a short while, and how everything between us began was random and completely unexpected.
+    const fullMessage = `I know we’ve only known each other for a short while, and how everything between us began was random and completely unexpected.
 
 But the moment I saw you, something deep inside me felt certain — that you were going to be someone truly special.
 
 It wasn’t love at first sight. It felt more like coming home — a sense of calm, comfort, and peace that I didn’t even realize I was looking for.
 
-You mean so much to me, and I’m genuinely excited for everything that lies ahead — our endless conversations, silly quarrels, romance, arguments, missing each other, and all the little moments in between ♾️💞
-    `.trim();
+You mean so much to me, and I’m genuinely excited for everything that lies ahead — our endless conversations, silly quarrels, romance, arguments, missing each other, and all the little moments in between ♾️💞`;
 
     function moveNoBtn() {
       const cardRect = card.getBoundingClientRect();
@@ -245,13 +240,13 @@ You mean so much to me, and I’m genuinely excited for everything that lies ahe
     }
 
     ["mouseenter", "touchstart", "click"].forEach(event => {
-      noBtn.addEventListener(event, (e) => {
+      noBtn.addEventListener(event, e => {
         e.preventDefault();
         moveNoBtn();
       });
     });
 
-    yesBtn.addEventListener("click", (e) => {
+    yesBtn.addEventListener("click", e => {
       bgMusic.volume = 0;
       bgMusic.play();
 
@@ -291,15 +286,12 @@ You mean so much to me, and I’m genuinely excited for everything that lies ahe
 
       const interval = setInterval(() => {
         typedMessage.innerHTML += text[i] === "\n" ? "<br>" : text[i];
-        typedMessage.appendChild(cursor);
         i++;
 
         if (i >= text.length) {
           clearInterval(interval);
           cursor.style.display = "none";
-          setTimeout(() => {
-            finalLine.style.display = "block";
-          }, 800);
+          setTimeout(() => finalLine.style.display = "block", 800);
         }
       }, 30);
     }
